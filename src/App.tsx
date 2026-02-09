@@ -7,16 +7,16 @@ type State = {
 export class App extends React.Component<{}, State> {
   state: State = { pressedKey: null };
 
-  handleKeyUp = (event: KeyboardEvent) => {
+  keyUpListener: (event: KeyboardEvent) => void = (event: KeyboardEvent) => {
     this.setState({ pressedKey: event.key });
   };
 
   componentDidMount() {
-    document.addEventListener('keyup', this.handleKeyUp as EventListener);
+    document.addEventListener('keyup', this.keyUpListener as EventListener);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keyup', this.handleKeyUp as EventListener);
+    document.removeEventListener('keyup', this.keyUpListener as EventListener);
   }
 
   render() {
